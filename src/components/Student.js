@@ -7,6 +7,7 @@ const Student = (props) => {
       <td>{props.fName}</td>
       <td>{props.lName}</td>
       <td>{props.nGrade}</td>
+      <td>{props.lGrade}</td>
     </tr>
   );
 };

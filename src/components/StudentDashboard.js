@@ -8,30 +8,38 @@ class StudentDashboard extends Component {
     super(props);
     this.state = {
       students: [
+        //  Holds the current list of students
         {
           id: 1,
           fName: 'Angelu Ferdinand',
           lName: 'Garcia',
-          nGrade: '100'
+          nGrade: 100
         },
         {
           id: 2,
           fName: 'Lyra Angela',
           lName: 'Manseguiao',
-          nGrade: '91'
+          nGrade: 91
         }
-      ]
+      ],
+
+      //  For the to-be added student
+      id: -1,
+      fName: '',
+      lName: '',
+      nGrade: -2
     };
   }
+
   render() {
     return (
       <div>
         <div className='container'>
           <StudentLister />
 
-          <StudentList students={this.state.students} />
+          <StudentList students = {this.state.students} />
 
-          <Summary />
+          <Summary students = {this.state.students}/>
         </div>
       </div>
     );
