@@ -1,5 +1,7 @@
 import React from 'react'
 
+// Form for adding a new student
+
 const StudentLister = (props) => {
   const rowStyle = 'row justify-content-center align-items-center mt-2';
   const colStyle = 'col';

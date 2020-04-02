@@ -1,6 +1,8 @@
 import React from 'react';
 import Student from './Student';
 
+/* Returns formatting for the students added through StudentLister */
+
 const StudentList = (props) => {
   /* formatting students */
   const students = props.students.map((stud) => (
@@ -10,21 +12,6 @@ const StudentList = (props) => {
       fName={stud.fName}
       lName={stud.lName}
       nGrade={stud.nGrade}
-      lGrade={
-        stud.nGrade < 50
-          ? 'F'
-          : stud.nGrade < 60
-          ? 'D'
-          : stud.nGrade < 68
-          ? 'C'
-          : stud.nGrade < 76
-          ? 'B-'
-          : stud.nGrade < 84
-          ? 'B'
-          : stud.nGrade < 92
-          ? 'A-'
-          : 'A'
-      }
     />
   ));
   return (
