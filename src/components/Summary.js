@@ -27,8 +27,6 @@ const Summary = (props) => {
           nGrade: stud.nGrade
         })
   );
-  console.log(studentsPassed);
-  console.log(studentsFailed);
   return (
     <div>
       <div className={rowStyle}>

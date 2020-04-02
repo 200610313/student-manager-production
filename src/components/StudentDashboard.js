@@ -34,26 +34,32 @@ class StudentDashboard extends Component {
           fName: 'Jack',
           lName: 'Black',
           nGrade: 32
+        },
+        {
+          id: 5,
+          fName: 'Fun',
+          lName: 'Do',
+          nGrade: 81
         }
       ],
-      //  For the to-be added student
-      id: -1,
-      fName: '',
-      lName: '',
-      nGrade: -2
     };
-    console.log(this.state.students)
+  }
+  
+  // Handles StudentLister's submit button
+  handleSubmit() {
+    console.log('s')
   }
 
   render() {
     return (
       <div>
         <div className='container'>
-          <StudentLister />
+          <StudentLister handleSubmit={this.handleSubmit} />
+          {/* Passing a reference to handle Submit button  */}
 
-          <StudentList students = {this.state.students} />
+          <StudentList students={this.state.students} />
 
-          <Summary students = {this.state.students}/>
+          <Summary students={this.state.students} />
         </div>
       </div>
     );
