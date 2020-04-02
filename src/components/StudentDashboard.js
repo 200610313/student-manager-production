@@ -41,13 +41,24 @@ class StudentDashboard extends Component {
           lName: 'Do',
           nGrade: 81
         }
-      ],
+      ]
     };
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
-  
+
   // Handles StudentLister's submit button
-  handleSubmit() {
-    console.log('s')
+  handleSubmit(newStudent) {
+    const [fName, lName, nGrade] = newStudent;
+    this.setState((state, props) => {
+      return {
+        students: state.students.push({
+          id: 10,
+          fName: fName,
+          lName: lName,
+          nGrade: nGrade
+        })
+      };
+    });
   }
 
   render() {

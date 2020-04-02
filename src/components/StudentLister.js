@@ -12,6 +12,7 @@ class StudentLister extends Component {
       nGrade: -2
     };
   }
+
   // Updates changes in state for first, last, and numeric grade entries
   handleFName(e) {
     const update = e.target.value;
@@ -69,7 +70,7 @@ class StudentLister extends Component {
             </div>
             <div className={colStyle}>
               <button
-                onClick={this.props.handleSubmit}
+                onClick={this.props.handleSubmit.bind(this,[this.state.fName,this.state.lName,this.state.nGrade])}
                 name='submitBtn'
                 type='button'
                 className='btn btn-primary btn-sm btn-block'
