@@ -49,14 +49,17 @@ class StudentDashboard extends Component {
   // Handles StudentLister's submit button
   handleSubmit(newStudent) {
     const [fName, lName, nGrade] = newStudent;
+    const id = this.state.students[this.state.students.length - 1].id + 1; // Temporarily, we set the id of the new student = id of last student added + 1
+    // Proper formatting
+    const studToAdd = {
+      id, // ES6 feature: these attributes are assigned to values from this local method
+      fName,
+      lName,
+      nGrade
+    };
     this.setState((state, props) => {
       return {
-        students: state.students.push({
-          id: 10,
-          fName: fName,
-          lName: lName,
-          nGrade: nGrade
-        })
+        students: [...state.students, studToAdd] // ES6 spread operator
       };
     });
   }
