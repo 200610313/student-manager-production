@@ -43,13 +43,14 @@ class StudentDashboard extends Component {
         }
       ]
     };
-    this.handleSubmit = this.handleSubmit.bind(this);  // Bind submit btn to this class 
+    this.handleSubmit = this.handleSubmit.bind(this); // Bind submit btn to this class
+    this.handleDelete = this.handleDelete.bind(this)
   }
 
   // Handles StudentLister's submit button
   handleSubmit(newStudent) {
     const [fName, lName, nGrade] = newStudent;
-    const id = Math.floor(Math.random() * (100 - 0) ) + 0; // ID = random between 0-100
+    const id = Math.floor(Math.random() * (100 - 0)) + 0; // ID = random between 0-100
     // Proper formatting
     const studToAdd = {
       id, // ES6 feature: these attributes are assigned to values from this local method
@@ -59,14 +60,21 @@ class StudentDashboard extends Component {
     };
     this.setState((state, props) => {
       return {
-        students: [...state.students, studToAdd] // ES6 spread operator
+        students: [...state.students, studToAdd] // ES6 spread operator | copies by value instead of reference
       };
     });
   }
 
   // Handles Student's delete button
-  handleDelete(studentID){
+  handleDelete(studentID) {
+    //delete student with studentID from state
+    // this.state.people.filter(item => item !== e.target.value)
 
+    this.setState((state, props) => {
+      return {
+        students: state.students.filter((stud) => stud.id !== studentID)
+      };
+    });
   }
 
   render() {
@@ -76,7 +84,10 @@ class StudentDashboard extends Component {
           <StudentLister handleSubmit={this.handleSubmit} />
           {/* Passing a reference to handle Submit button  */}
 
-          <StudentList students={this.state.students} />
+          <StudentList
+            students={this.state.students}
+            handleDelete={this.handleDelete}
+          />
 
           <Summary students={this.state.students} />
         </div>

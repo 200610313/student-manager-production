@@ -1,7 +1,6 @@
 import React from 'react';
 
 // Formats the render for each student that appears in StudentList, StudentsPassedList and StudentsFailedList
-
 const Student = (props) => {
   if (props.unsorted)
     //Display with buttons | used by studentlist
@@ -27,7 +26,7 @@ const Student = (props) => {
             ? 'A-'
             : 'A'}
         </td>
-        <td><button type="button" className="btn btn-danger">Delete</button></td>
+        <td><button onClick = {props.handleDelete.bind(this,props.id)} type="button" className="btn btn-danger">Delete</button></td>
         <td>23</td>
       </tr>
     );
