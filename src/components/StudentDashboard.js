@@ -100,7 +100,7 @@ class StudentDashboard extends Component {
   toggleForm() {
     this.setState((state, props) => {
       return { toggleForm: !state.toggleForm };
-    }, console.log(this.state.toggleForm));
+    });
   }
 
   render() {
@@ -116,7 +116,7 @@ class StudentDashboard extends Component {
             toggleForm={this.toggleForm}
           />
           <Summary students={this.state.students} />
-          <StudentModificationForm toggleForm={this.state.toggleForm} />
+          <StudentModificationForm toggleForm={this.state.toggleForm} toggle = {this.toggleForm}/>
         </div>
       </div>
     );
