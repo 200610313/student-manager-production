@@ -84,7 +84,7 @@ class StudentDashboard extends Component {
     this.setState((state, props) => {
       return {
         students: state.students.map((stud) => {
-          if (stud.id == id) {
+          if (stud.id === id) {
             stud.fName = newFN;
             stud.lName = newLN;
             stud.lGrade = newNG;
