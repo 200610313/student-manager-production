@@ -14,7 +14,7 @@ const StudentList = (props) => {
       nGrade={stud.nGrade}
       unsorted={true/* true to return formatting for StudentList (with buttons) */}
       handleDelete ={props.handleDelete/* passing delete handler */} 
-      handleModify ={props.handleModify} 
+      toggleForm ={props.toggleForm} 
     />
   ));
   return (

@@ -1,8 +1,12 @@
 import React, { Component } from 'react';
+/* Returns formatting for StudentList, StudentsFailedList, and StudentsPassedList */
 class Student extends Component {
   constructor(props) {
     super(props);
-    this.state = { modifiedBtnClicked: false };
+    this.state = { modifiedBtnClicked: true };
+  }
+  handleModify(){
+    this.setState((state, props) => { return { modifiedBtnClicked: !state.modifiedBtnClicked }})
   }
   render() {
     const nGrade = //  Letter grade translation
@@ -25,17 +29,19 @@ class Student extends Component {
       numGrade = this.props.nGrade;
 
     let buffer = []; //  Contains the proper JSX according to props.unsorted
-    buffer.push(  // Push basic data
+    buffer.push(
+      // Push basic data
       // React.Fragment is used to prevent wrapping with <div>
       <React.Fragment>
-        <th scope='row'>{id}</th>
-        <td>{fName}</td>
-        <td>{lName}</td>
-        <td>{numGrade}</td>
-        <td>{nGrade}</td>
+        <th scope='row' key = {id+1}>{id}</th>
+        <td key = {id+2}>{fName}</td>
+        <td key = {id+3}>{lName}</td>
+        <td key = {id+4}>{numGrade}</td>
+        <td key = {id+5}>{nGrade}</td>
       </React.Fragment>
     );
-    if (this.props.unsorted) {  // If received StudentList as element, we push delete and modify buttons
+    if (this.props.unsorted) {
+      // If received StudentList as element, we push delete and modify buttons
       buffer.push(
         <React.Fragment>
           <td>
@@ -49,12 +55,7 @@ class Student extends Component {
           </td>
           <td>
             <button
-              onClick={this.props.handleModify.bind(this, [
-                id,
-                fName,
-                lName,
-                numGrade
-              ])}
+              onClick={this.props.toggleForm.bind(this)}
               type='button'
               className='btn btn-info btn-block'
             >
@@ -64,7 +65,11 @@ class Student extends Component {
         </React.Fragment>
       );
     }
-    return(<tr>{buffer}</tr>)
+    return (
+      <React.Fragment>
+        <tr>{buffer}</tr>
+      </React.Fragment>
+    );
   }
 }
 Student.defaultProps = {

@@ -2,13 +2,14 @@ import React, { Component } from 'react';
 import StudentLister from './StudentLister';
 import StudentList from './StudentList';
 import Summary from './Summary';
-
+import StudentModificationForm from './StudentModificationForm';
 // The parent component
 
 class StudentDashboard extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      toggleForm: false, //  true to show form when modify btn is clicked
       students: [
         //  Holds the current list of students
         {
@@ -45,7 +46,8 @@ class StudentDashboard extends Component {
     };
     this.handleSubmit = this.handleSubmit.bind(this); // Bind submit btn to this class
     this.handleDelete = this.handleDelete.bind(this);
-    this.handleModify = this.handleModify.bind(this);
+    // this.handleModify = this.handleModify.bind(this);
+    this.toggleForm = this.toggleForm.bind(this);
   }
 
   // Handles StudentLister's submit button
@@ -73,7 +75,7 @@ class StudentDashboard extends Component {
 
     this.setState((state, props) => {
       return {
-        students: state.students.filter((stud) => stud.id !== studentID) // if equal to parameter, we do not include it in our new state
+        students: state.students.filter((stud) => stud.id !== studentID) // if equal to parameter, do not include it in new state
       };
     });
   }
@@ -95,27 +97,29 @@ class StudentDashboard extends Component {
     });
   }
 
+  toggleForm() {
+    this.setState((state, props) => {
+      return { toggleForm: !state.toggleForm };
+    }, console.log(this.state.toggleForm));
+  }
+
   render() {
     return (
       <div>
         <div className='container'>
-          <StudentLister
-            handleSubmit={this.handleSubmit}
-          />
+          <StudentLister handleSubmit={this.handleSubmit} />
           {/* Passing a reference to handle Submit button  */}
 
           <StudentList
             students={this.state.students}
             handleDelete={this.handleDelete}
-            handleModify={this.handleModify}
-
+            toggleForm={this.toggleForm}
           />
-
           <Summary students={this.state.students} />
+          <StudentModificationForm toggleForm={this.state.toggleForm} />
         </div>
       </div>
     );
   }
 }
-
 export default StudentDashboard;
