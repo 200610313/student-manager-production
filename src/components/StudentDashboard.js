@@ -43,13 +43,13 @@ class StudentDashboard extends Component {
         }
       ]
     };
-    this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);  // Bind submit btn to this class 
   }
 
   // Handles StudentLister's submit button
   handleSubmit(newStudent) {
     const [fName, lName, nGrade] = newStudent;
-    const id = this.state.students[this.state.students.length - 1].id + 1; // Temporarily, we set the id of the new student = id of last student added + 1
+    const id = Math.floor(Math.random() * (100 - 0) ) + 0; // ID = random between 0-100
     // Proper formatting
     const studToAdd = {
       id, // ES6 feature: these attributes are assigned to values from this local method
@@ -62,6 +62,11 @@ class StudentDashboard extends Component {
         students: [...state.students, studToAdd] // ES6 spread operator
       };
     });
+  }
+
+  // Handles Student's delete button
+  handleDelete(studentID){
+
   }
 
   render() {
