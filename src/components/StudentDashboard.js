@@ -44,7 +44,8 @@ class StudentDashboard extends Component {
       ]
     };
     this.handleSubmit = this.handleSubmit.bind(this); // Bind submit btn to this class
-    this.handleDelete = this.handleDelete.bind(this)
+    this.handleDelete = this.handleDelete.bind(this);
+    this.handleModify = this.handleModify.bind(this);
   }
 
   // Handles StudentLister's submit button
@@ -72,7 +73,24 @@ class StudentDashboard extends Component {
 
     this.setState((state, props) => {
       return {
-        students: state.students.filter((stud) => stud.id !== studentID)
+        students: state.students.filter((stud) => stud.id !== studentID) // if equal to parameter, we do not include it in our new state
+      };
+    });
+  }
+
+  // Handles Student's modify button
+  handleModify(modifiedInfo) {
+    const [id, newFN, newLN, newNG] = modifiedInfo;
+    this.setState((state, props) => {
+      return {
+        students: state.students.map((stud) => {
+          if (stud.id == id) {
+            stud.fName = newFN;
+            stud.lName = newLN;
+            stud.lGrade = newNG;
+          }
+          return stud;
+        })
       };
     });
   }
@@ -81,12 +99,16 @@ class StudentDashboard extends Component {
     return (
       <div>
         <div className='container'>
-          <StudentLister handleSubmit={this.handleSubmit} />
+          <StudentLister
+            handleSubmit={this.handleSubmit}
+          />
           {/* Passing a reference to handle Submit button  */}
 
           <StudentList
             students={this.state.students}
             handleDelete={this.handleDelete}
+            handleModify={this.handleModify}
+
           />
 
           <Summary students={this.state.students} />
