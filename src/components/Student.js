@@ -46,7 +46,7 @@ class Student extends Component {
         <React.Fragment>
           <td>
             <button
-              onClick={this.props.handleDelete.bind(this, id)}
+              onClick={this.props.handleDelete.bind(this, id)} // If clicked, pass the student's ID
               type='button'
               className='btn btn-danger btn-block'
             >
@@ -55,7 +55,7 @@ class Student extends Component {
           </td>
           <td>
             <button
-              onClick={this.props.toggleForm.bind(this)}
+              onClick={this.props.toggleForm.bind(this,this.props.id)}
               type='button'
               className='btn btn-info btn-block'
             >
